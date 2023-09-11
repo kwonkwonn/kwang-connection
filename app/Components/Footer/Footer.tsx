@@ -1,10 +1,9 @@
-import Image from "next/image";
 import Link from "next/link";
 
 function Footer(){
 
     return(
-        <div className="flex fixed  w-screen justify-center gap-10 bottom-5 z-999 ">      
+        <div className="flex  w-screen justify-center gap-10 bottom-0 z-999 ">      
             <Link style={{marginTop:"4px", color:"black"}} href="https://github.com/kwonkwonn/kwang-connection">깃허브 </Link> 
                 <Link style={{marginTop:"4px", color:"black"}} href="https://etherscan.io/">컨트랙트 </Link> 
                 <Link style={{marginTop:"4px", color:"black"}} href={"/"}>구경</Link>

@@ -17,12 +17,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      
-    <body className={inter.className}>
+      <head>
+      </head>
+    <body className={inter.className} style={{position:"relative"}}>
         <Header />
         {children}
         <Footer/>
-
         </body>
     </html>
   )

@@ -7,6 +7,7 @@ const inter = Inter({ subsets: ['latin'] })
 export const metadata: Metadata = {
   title: 'Kwang Connection',
   description: 'Connect separated each by technology',
+
 }
 
 export default function RootLayout({
@@ -16,7 +17,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      
+      <head>
+      </head>
+
       <body className={inter.className}>
         {children}
         </body>
