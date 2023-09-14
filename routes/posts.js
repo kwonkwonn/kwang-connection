@@ -166,6 +166,8 @@ const dummyDatapost=[
     }
 ]
 
+
+
 // const feedsControler={
 //     currentNumber:0, 
 //     inCreaseNumber: ()=>{
@@ -175,24 +177,12 @@ const dummyDatapost=[
 // }
 //스크롤 내려가면 세개씩 보내는 객체 구상중
 
-/* GET home page. */
+
 
 router.get('/', (req,res)=>{
-    posts.read(req,res,"Anything");
+    posts.readAll(req,res);
     //나중에 추가
 })
-
-router.get('/:Category', async (req,res)=>{
-    const category= req.params.Category;
-    posts.read(req,res, category)});
-
-
-router.post('/:Category', async(req,res)=>{
-    const category= req.params.Category;
-    posts.NewPost(req,res, category);
-})
-
-
 
 router.get('/topFeeds/:number',  async function(req,res,next){
     const number=req.params.number;
@@ -200,6 +190,46 @@ router.get('/topFeeds/:number',  async function(req,res,next){
     
     res.send(data.slice(0,number-1));
 })
+
+
+router.post('/comments/:Category/:Index', async(req,res)=>{
+    const category= req.params.Category;
+    const index= req.params.Index;
+    posts.addComment(req,res,category,index);
+
+})
+
+router.get('/:Category', async (req,res)=>{
+    const category= req.params.Category;
+    posts.read(req,res, category)});
+
+router.post('/:Category', async(req,res)=>{
+       const category= req.params.Category;
+    posts.NewPost(req,res, category);
+});
+
+
+
+router.get('/:Category/:Index', async (req,res)=>{
+    const category= req.params.Category;
+    const index= req.params.Index;
+    posts.readIndividual(req,res, category, index)});
+    
+router.delete('/:Category/:Index', async(req,res)=>{
+    const category= req.params.Category;
+    const index= req.params.Index;
+
+    posts.deletePost(req,res, category, index);
+
+})
+
+
+// router.delete('/:Index', 
+
+// )
+
+
+
 
 
 // router.post('/topFeeds', posts.NewPost)
