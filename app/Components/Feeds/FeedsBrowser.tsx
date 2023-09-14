@@ -7,7 +7,7 @@ import FeedsIndividual from "./feedsModule/FeedIndividual";
 
 function FeedsBrowser(){
     const [loading, setLoading]=useState(false);
-    const [posts, setPosts] =useState<feedData[]>([]);
+    const [posts, setPosts] =useState<feedList[]>([]);
 
     async function fetchData(){
         setLoading(true);
@@ -33,8 +33,8 @@ return(
         <div className="flex flex-col gap-4"> 
             {posts.map((el)=>{
                     return(
-                        <div className="w-inherit ">
-                            {<FeedsIndividual key={el.timeStamp} dataList={el}  />}</div>)
+                        <div className="w-inherit cursor-pointer" >
+                            {<FeedsIndividual key={el.timeStamp} dataList={el} />}</div>)
                         })}
         </div>
     </div>)

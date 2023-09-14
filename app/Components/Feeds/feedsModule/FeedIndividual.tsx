@@ -1,14 +1,36 @@
+import { useRouter } from "next/navigation";
+
 export default function FeedsIndividual(dataList:any){
-        console.log(dataList.dataList.userName);
+    const router= useRouter();
+    const dataReceived:feedData = dataList.dataList
+    console.log(dataReceived.category);
+    
+    function categoryRefine(dataReceived: any){
+        console.log(dataReceived.category)
+
+        switch(dataReceived.category){
+            case("Anything"):
+                return"잡담";
+            case("private"):
+                return"사담";
+            case("Promotion"):
+                return"모집해요";
+            default:
+                return"빈 페이지"
+            }
+    }
+
+
+    const categoryInKorean = categoryRefine(dataReceived);
+
     return(
         <div>
-            <div className="border rounded-md px-12 pt-12  pb-6 border-black">
-                <p className="text-xl font-bold">{dataList.dataList.postTitle}</p>
-                <p className="text-m font-bold text-right ">{dataList.dataList.userName}</p>
-                <p className="text-xs text-right mb-8 ">{`${dataList.dataList.view} 회`}</p>
-                <p className="text-xs ">{dataList.dataList.postContent}</p>
-                <p className="text-xs text-right mt-4">{dataList.dataList.timeStamp}</p>
+            <div onClick={()=>{router.push(`/Main/post/${dataReceived.category}/${dataReceived.index}`)}} className="border rounded-md px-12 pt-12  pb-6 border-black">
+                <p className="text-xl font-bold">{dataReceived.postTitle}</p>
+                <p className="text-xs ">{dataReceived.userWalletAddress+"dasf"}</p>
+                <p className="text-xs text-right">{categoryInKorean}</p>
 
+                <p className="text-xs text-right mt-4">{dataReceived.timeStamp}</p>
             </div>
         </div>
     )
