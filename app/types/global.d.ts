@@ -4,7 +4,7 @@ declare global {
     userName: String;
     postTitle: String;
     postContent: String;
-    timeStamp: String;
+    timeStamp: Date;
     view: Number;
     comments: Array<comments>;
     vote: Number;
@@ -15,7 +15,7 @@ declare global {
   interface feedList {
     postTitle: String;
     userWalletAddress: String;
-    timeStamp: String;
+    timeStamp: Date;
     category: String;
     index: Number;
   }

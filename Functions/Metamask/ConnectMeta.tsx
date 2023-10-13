@@ -19,7 +19,7 @@ function MetaMaskConnect() {
   }, []);
 
   let signer: any | JsonRpcSigner;
-  let provider;
+  let provider: any;
 
   async function onClick() {
     setIsConnecting(true);
@@ -29,8 +29,11 @@ function MetaMaskConnect() {
       provider = ethers.getDefaultProvider("infura");
     } else {
       provider = new ethers.BrowserProvider(window.ethereum);
-      let accounts = await provider.send("eth_requestAccounts", []);
-      let account = accounts[0];
+      console.log(window.ethereum);
+      console.log(provider);
+      // let accounts = await provider
+      //   .send("eth_requestAccounts", [])
+      //   .then((data) => console.log(data));
 
       // provider.on("accountsChanged", function (accounts) {
       //   account = accounts[0];
@@ -39,7 +42,7 @@ function MetaMaskConnect() {
 
       signer = await provider
         .getSigner()
-        .then((response) => {
+        .then((response: any) => {
           if (!response) {
             throw new Error("failed to login");
           } else {
@@ -48,11 +51,11 @@ function MetaMaskConnect() {
             return response;
           }
         })
-        .then(async (data) => {
+        .then(async (data: any) => {
           console.log(data);
           return data;
         })
-        .catch((err) => {
+        .catch((err: Error) => {
           console.log(err);
           return false;
         });
@@ -62,6 +65,16 @@ function MetaMaskConnect() {
       );
 
       await fetchUser(signer.address, message, signedMessage);
+
+      const accounts = await window.ethereum
+        .request({
+          method: "eth_requestAccounts",
+        })
+        .then((data: any) => {
+          console.log(data);
+        });
+      let account = accounts;
+      console.log(account);
     }
   }
 
